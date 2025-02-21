@@ -147,7 +147,7 @@ var (
 	}
 	NetworkIdFlag = &cli.Uint64Flag{
 		Name:     "networkid",
-		Usage:    "Explicitly set network id (integer)(For testnets: use --sepolia, --holesky instead)",
+		Usage:    "Explicitly set network id (integer)(For testnets: use --sepolia, --sequoia, --holesky instead)",
 		Value:    ethconfig.Defaults.NetworkId,
 		Category: flags.EthCategory,
 	}
@@ -185,6 +185,11 @@ var (
 	SepoliaFlag = &cli.BoolFlag{
 		Name:     "sepolia",
 		Usage:    "Sepolia network: pre-configured proof-of-work test network",
+		Category: flags.EthCategory,
+	}
+	SequoiaFlag = &cli.BoolFlag{
+		Name:     "sequoia",
+		Usage:    "Sequoia network: pre-configured proof-of-work test network",
 		Category: flags.EthCategory,
 	}
 	HoleskyFlag = &cli.BoolFlag{
@@ -1123,6 +1128,7 @@ var (
 	// TestnetFlags is the flag group of all built-in supported testnets.
 	TestnetFlags = []cli.Flag{
 		SepoliaFlag,
+		SequoiaFlag,
 		MordorFlag,
 		HoleskyFlag,
 	}
@@ -1213,6 +1219,8 @@ func setBootstrapNodes(ctx *cli.Context, cfg *p2p.Config) {
 			urls = params.MordorBootnodes
 		case ctx.Bool(SepoliaFlag.Name):
 			urls = params.SepoliaBootnodes
+		case ctx.Bool(SequoiaFlag.Name):
+			urls = params.SequoiaBootnodes
 		case ctx.Bool(HoleskyFlag.Name):
 			urls = params.HoleskyBootnodes
 		}
@@ -1691,6 +1699,8 @@ func dataDirPathForCtxChainConfig(ctx *cli.Context, baseDataDirPath string) stri
 		return filepath.Join(baseDataDirPath, "mordor")
 	case ctx.Bool(SepoliaFlag.Name):
 		return filepath.Join(baseDataDirPath, "sepolia")
+	case ctx.Bool(SequoiaFlag.Name):
+		return filepath.Join(baseDataDirPath, "sequoia")
 	case ctx.Bool(MintMeFlag.Name):
 		return filepath.Join(baseDataDirPath, "mintme")
 	case ctx.Bool(HoleskyFlag.Name):
@@ -1945,7 +1955,7 @@ func CheckExclusive(ctx *cli.Context, args ...interface{}) {
 // SetEthConfig applies eth-related command line flags to the config.
 func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	// Avoid conflicting network flags
-	CheckExclusive(ctx, MainnetFlag, DeveloperFlag, DeveloperPoWFlag, SepoliaFlag, ClassicFlag, MordorFlag, MintMeFlag, HoleskyFlag)
+	CheckExclusive(ctx, MainnetFlag, DeveloperFlag, DeveloperPoWFlag, SepoliaFlag, SequoiaFlag, ClassicFlag, MordorFlag, MintMeFlag, HoleskyFlag)
 	CheckExclusive(ctx, LightServeFlag, SyncModeFlag, "light")
 	CheckExclusive(ctx, DeveloperFlag, DeveloperPoWFlag, ExternalSignerFlag) // Can't use both ephemeral unlocked and external signer
 
@@ -2179,6 +2189,9 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	case ctx.Bool(SepoliaFlag.Name):
 		cfg.Genesis = params.DefaultSepoliaGenesisBlock()
 		SetDNSDiscoveryDefaults(cfg, params.SepoliaGenesisHash)
+	case ctx.Bool(SequoiaFlag.Name):
+		cfg.Genesis = params.DefaultSequoiaGenesisBlock()
+		SetDNSDiscoveryDefaults(cfg, params.SequoiaGenesisHash)
 	case ctx.Bool(ClassicFlag.Name):
 		SetDNSDiscoveryDefaults2(cfg, params.ClassicDNSNetwork1)
 	case ctx.Bool(MordorFlag.Name):
@@ -2508,6 +2521,8 @@ func genesisForCtxChainConfig(ctx *cli.Context) *genesisT.Genesis {
 		genesis = params.DefaultMordorGenesisBlock()
 	case ctx.Bool(SepoliaFlag.Name):
 		genesis = params.DefaultSepoliaGenesisBlock()
+	case ctx.Bool(SequoiaFlag.Name):
+		genesis = params.DefaultSequoiaGenesisBlock()
 	case ctx.Bool(MintMeFlag.Name):
 		genesis = params.DefaultMintMeGenesisBlock()
 	case ctx.Bool(HoleskyFlag.Name):
