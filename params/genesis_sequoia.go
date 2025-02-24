@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/params/types/genesisT"
 )
 
-var SequoiaGenesisHash = common.HexToHash("0x5f32ce1ed875a04d74361164bcfcc24af721df8e616642486338300a691fe582")
+var SequoiaGenesisHash = common.HexToHash("0x5d035852d375b39b1eec893b7aef334c3d908999cfc9fd08de43de8160d4a42a")
 
 func DefaultSequoiaGenesisBlock() *genesisT.Genesis {
 	return &genesisT.Genesis{
