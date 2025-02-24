@@ -24,10 +24,10 @@ import (
 )
 
 var (
-	// SequoiaChainConfig is the chain parameters to run a node on the Sintrop Sequoia test network (PoW).
-	SequoiaChainConfig = &coregeth.CoreGethChainConfig{
-		NetworkID: 1600,
-		ChainID:   big.NewInt(1600),
+	// SintropChainConfig is the chain parameters to run a node on the Ethereum Classic Sintrop test network (PoW).
+	SintropChainConfig = &coregeth.CoreGethChainConfig{
+		NetworkID: 250225,
+		ChainID:   big.NewInt(250225),
 		Ethash:    new(ctypes.EthashConfig),
 
 		EIP2FBlock: big.NewInt(0),
@@ -69,8 +69,8 @@ var (
 		ECIP1099FBlock: nil, // Etchash
 
 		DisposalBlock:      big.NewInt(0), // Dispose difficulty bomb
-		ECIP1017FBlock:     nil,           // Ethereum Classic's disinflationary monetary policy
-		ECIP1017EraRounds:  nil,
+		ECIP1017FBlock:     big.NewInt(0), // Ethereum Classic's disinflationary monetary policy
+		ECIP1017EraRounds:  big.NewInt(5000000),
 		ECIP1010PauseBlock: nil, // No need to delay difficulty bomb, is defused by default
 		ECIP1010Length:     nil,
 		ECBP1100FBlock:     nil, // ECBP1100 (MESS artificial finality)

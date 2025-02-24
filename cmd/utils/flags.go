@@ -162,6 +162,11 @@ var (
 			return
 		}(), ","),
 	}
+	SintropFlag = &cli.BoolFlag{
+		Name:     "sintrop",
+		Usage:    "Sintrop mainnet: pre-configured proof-of-work network",
+		Category: flags.EthCategory,
+	}	
 	ClassicFlag = &cli.BoolFlag{
 		Name:     "classic",
 		Usage:    "Ethereum Classic network: pre-configured Ethereum Classic mainnet",
@@ -1134,6 +1139,7 @@ var (
 	}
 	// NetworkFlags is the flag group of all built-in supported networks.
 	NetworkFlags = append([]cli.Flag{
+		SintropFlag,
 		MainnetFlag,
 		ClassicFlag,
 		MintMeFlag,
@@ -1211,6 +1217,8 @@ func setBootstrapNodes(ctx *cli.Context, cfg *p2p.Config) {
 			return // Already set by config file, don't apply defaults.
 		}
 		switch {
+		case ctx.Bool(SintropFlag.Name):
+			urls = params.SintropBootnodes			
 		case ctx.Bool(ClassicFlag.Name):
 			urls = params.ClassicBootnodes
 		case ctx.Bool(MintMeFlag.Name):
@@ -1693,6 +1701,8 @@ func setSmartCard(ctx *cli.Context, cfg *node.Config) {
 
 func dataDirPathForCtxChainConfig(ctx *cli.Context, baseDataDirPath string) string {
 	switch {
+	case ctx.Bool(SintropFlag.Name):
+		return filepath.Join(baseDataDirPath, "sintrop")		
 	case ctx.Bool(ClassicFlag.Name):
 		return filepath.Join(baseDataDirPath, "classic")
 	case ctx.Bool(MordorFlag.Name):
@@ -1955,7 +1965,7 @@ func CheckExclusive(ctx *cli.Context, args ...interface{}) {
 // SetEthConfig applies eth-related command line flags to the config.
 func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	// Avoid conflicting network flags
-	CheckExclusive(ctx, MainnetFlag, DeveloperFlag, DeveloperPoWFlag, SepoliaFlag, SequoiaFlag, ClassicFlag, MordorFlag, MintMeFlag, HoleskyFlag)
+	CheckExclusive(ctx, SintropFlag, MainnetFlag, DeveloperFlag, DeveloperPoWFlag, SepoliaFlag, SequoiaFlag, ClassicFlag, MordorFlag, MintMeFlag, HoleskyFlag)
 	CheckExclusive(ctx, LightServeFlag, SyncModeFlag, "light")
 	CheckExclusive(ctx, DeveloperFlag, DeveloperPoWFlag, ExternalSignerFlag) // Can't use both ephemeral unlocked and external signer
 
@@ -2189,6 +2199,9 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	case ctx.Bool(SepoliaFlag.Name):
 		cfg.Genesis = params.DefaultSepoliaGenesisBlock()
 		SetDNSDiscoveryDefaults(cfg, params.SepoliaGenesisHash)
+	case ctx.Bool(SintropFlag.Name):
+		cfg.Genesis = params.DefaultSintropGenesisBlock()
+		SetDNSDiscoveryDefaults(cfg, params.SintropGenesisHash)		
 	case ctx.Bool(SequoiaFlag.Name):
 		cfg.Genesis = params.DefaultSequoiaGenesisBlock()
 		SetDNSDiscoveryDefaults(cfg, params.SequoiaGenesisHash)
@@ -2513,6 +2526,8 @@ func DialRPCWithHeaders(endpoint string, headers []string) (*rpc.Client, error) 
 func genesisForCtxChainConfig(ctx *cli.Context) *genesisT.Genesis {
 	var genesis *genesisT.Genesis
 	switch {
+	case ctx.Bool(SintropFlag.Name):
+		genesis = params.DefaultSintropGenesisBlock()		
 	case ctx.Bool(MainnetFlag.Name):
 		genesis = params.DefaultGenesisBlock()
 	case ctx.Bool(ClassicFlag.Name):

@@ -34,6 +34,7 @@ func TestConsoleCmdNetworkIdentities(t *testing.T) {
 
 		// All other possible --<chain> values.
 		{[]string{"--mainnet"}, 1, 1, params.MainnetGenesisHash.Hex()},
+		{[]string{"--sintrop"}, 250225, 250225, params.SintropGenesisHash.Hex()},
 		{[]string{"--sepolia"}, 11155111, 11155111, params.SepoliaGenesisHash.Hex()},
 		{[]string{"--sequoia"}, 1600, 1600, params.SequoiaGenesisHash.Hex()},
 		{[]string{"--mordor"}, 7, 63, params.MordorGenesisHash.Hex()},
