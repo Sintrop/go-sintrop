@@ -5,7 +5,7 @@ package params
 // They will be the first point of contact for nodes coming online
 // to find peers.
 var SintropBootnodes = []string{
-	"enode://ce9c7db505ad747672f3f6871d95db3921d601bad5e193516e5093090ebe693977221a643e41acca1bd4fbef9acc3942928cdcfb10129735b7aacc01d7961e4b@212.32.255.80:30303",
+	"enode://8d17546991a9032fea64a254d31819661e0213fb14bfde3a37826d8699747c19cbdc42b4183138a82aa557b9f270c97ebfa39179a1fa9eccdb895b25f987455d@174.138.124.223:30303",
 }
 
 // Once Sintrop network has DNS discovery set up,
