@@ -1,12 +1,14 @@
 ## How to run a Sintrop bootnode
 
-### Requisitos
-- IP fixo público;
-- Última versão do [sintrop/go-sintrop](https://github.com/sintrop/go-sintrop);
-- Redirecionamento da porta 30303 no modem para a máquina;
+### Requirements
+- Fixed public IP;
+- Last version of [sintrop/go-sintrop](https://github.com/sintrop/go-sintrop);
+- Forwarding port 30303 on the modem to the local machine;
 
-### Comandos
-- Run bootnode:
+### Run a node
+
+After downloading the latest version of go-sintrop, run the following command at the ./build folder to start the node.
+
 ```
 ./geth --identity Sintrop --datadir ./sintrop_node \
   --sintrop \
@@ -16,3 +18,11 @@
   --port 30303 \
   console
 ```
+
+### Add bootnode to sourcecode
+
+To see your enode, type "admin" at the geth console. Copy your enode. 
+
+Clone the go-sintrop repository, create a new branch to update bootnode. Add your enode at the /param/bootnodes_sintrop.go
+
+Publish the branch and open a Pull Request for review.
