@@ -17,7 +17,7 @@ docker build --no-cache -t sin_geth .
 
 ### Run sin_geth
 ```
-docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sequoia_volume:/go-sintrop/sequoia_node  sin_geth
+docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sequoia_node  sin_geth
 ## Change /home/user/sequoia_volume to your dir
 ```
 ## GETH
