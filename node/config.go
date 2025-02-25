@@ -301,7 +301,7 @@ func (c *Config) NodeName() string {
 	name := c.name()
 	// Backwards compatibility: previous versions used Geth or MultiGeth
 	if strings.ToLower(name) == "geth" || strings.ToLower(name) == "geth-testnet" {
-		name = "CoreGeth"
+		name = "GoSintrop"
 	}
 	if params.VersionName != "" {
 		name = params.VersionName
