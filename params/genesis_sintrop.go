@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/params/types/genesisT"
 )
 
-var SintropGenesisHash = common.HexToHash("0x5d035852d375b39b1eec893b7aef334c3d908999cfc9fd08de43de8160d4a42a")
+var SintropGenesisHash = common.HexToHash("0xb390a5cdb5c39d4ea8909b6822573b50630a1254ba352142e436a76e99702e32")
 
 func DefaultSintropGenesisBlock() *genesisT.Genesis {
 	return &genesisT.Genesis{
