@@ -17,7 +17,7 @@ func DefaultSintropGenesisBlock() *genesisT.Genesis {
 		ExtraData:  hexutil.MustDecode("0x42"),
 		GasLimit:   hexutil.MustDecodeUint64("0x2fefd8"),
 		Difficulty: hexutil.MustDecodeBig("0x20000000"),
-		Timestamp:  1615385980,
+		Timestamp:  1740492658,
 		Alloc: genesisT.GenesisAlloc{
 			common.HexToAddress("366ae7da62294427c764870bd2a460d7ded29d30"): genesisT.GenesisAccount{
 				Balance: big.NewInt(42),
