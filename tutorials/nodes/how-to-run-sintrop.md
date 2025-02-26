@@ -13,17 +13,7 @@ Extract the file, and access the project path.
 Change miner.etherbase to your wallet address and run the following command:
 
 ```
-geth --identity Sintrop --datadir ./sintrop_node \ 
-  --sintrop \
-  --syncmode "full" \
-  --networkid 250225 \ 
-  --cache=1024 \ 
-  --port 30303 \ 
-  -authrpc.addr localhost --authrpc.port 8551 \
-  --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true \ 
-  --miner.threads=1 \ 
-  --miner.etherbase=0x0000000000000000000000000000000000000000 \ 
-  console
+./geth --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 30303 --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --miner.threads=1 --miner.etherbase=0x0000000000000000000000000000000000000000 console
 ```
 
 ### MINING
