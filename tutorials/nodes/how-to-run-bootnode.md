@@ -10,13 +10,7 @@
 After downloading the latest version of go-sintrop, run the following command at the project folder to start the node.
 
 ```
-./geth --identity Sintrop --datadir ./sintrop_node \
-  --sintrop \
-  --syncmode "full" \
-  --networkid 250225 \
-  --cache=1024 \
-  --port 30303 \
-  console
+./geth --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 30303 console
 ```
 
 ### Add bootnode to sourcecode
