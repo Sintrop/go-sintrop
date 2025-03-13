@@ -14,7 +14,7 @@ After downloading the latest version of go-sintrop, run the following command at
 ```
 
 ```
-./geth --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 30303 --http.port 8545 --http=true --miner.threads=1 --miner.etherbase=0x0000000000000000000000000000000000000000 console
+./geth --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 30303 --http.port 8545 --http=true console
 ```
 
 ### Add bootnode to sourcecode

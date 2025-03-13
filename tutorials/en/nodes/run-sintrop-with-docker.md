@@ -8,17 +8,22 @@
 
 ## Run Project
 
-### Build sin_geth
+### Build go_sintrop
 ```
-docker build -t sin_geth .
-# Build without cache
-docker build --no-cache -t sin_geth .
+docker build -t go_sintrop .
 ```
 
-### Run sin_geth
 ```
-docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sequoia_node  sin_geth
-## Change /home/user/sequoia_volume to your dir
+# Build without cache
+docker build --no-cache -t go_sintrop .
+```
+
+### Run go_sintrop
+```
+docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sintrop_node  go_sintrop
+```
+
+Change /home/user/sintrop_node to your dir
 ```
 ## GETH
 
@@ -50,8 +55,6 @@ geth --identity Sintrop --datadir ./sintrop_node \
   --port 30303 \
   --authrpc.addr localhost --authrpc.port 8551 \
   --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --http.api debug,net,eth,web3,txpool --ws=true --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
-  --miner.threads=1 \
-  --miner.etherbase=0x0000000000000000000000000000000000000000 \
   --gcmode=archive \
   console
 ```

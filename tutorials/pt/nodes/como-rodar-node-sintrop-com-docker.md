@@ -17,8 +17,9 @@ docker build --no-cache -t go-sintrop .
 
 ### Executar go-sintrop
 ```
-docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sequoia_node  sin_geth
-## Change /home/user/sequoia_volume to your dir
+docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sintrop_node  go-sintrop
+
+## Trocar /home/user/sintrop_node para o seu diretório
 ```
 ## GETH
 
@@ -50,8 +51,6 @@ geth --identity Sintrop --datadir ./sintrop_node \
   --port 30303 \
   --authrpc.addr localhost --authrpc.port 8551 \
   --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --http.api debug,net,eth,web3,txpool --ws=true --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
-  --miner.threads=1 \
-  --miner.etherbase=0x0000000000000000000000000000000000000000 \
   --gcmode=archive \
   console
 ```
