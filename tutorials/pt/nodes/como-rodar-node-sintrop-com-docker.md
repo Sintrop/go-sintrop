@@ -1,30 +1,31 @@
-## Run Sintrop with docker
+## Como rodar node Sintrop com Docker
 
-## Run Sequoia with docker
+## Rodar Sequoia com Docker
 
-## Pre requisites
-- Docker installed
+## Requisitos
+- Docker instalado
 
 
-## Run Project
+## Rodar o node
 
-### Build sin_geth
+### Fazer o build go-sintrop
 ```
-docker build -t sin_geth .
+docker build -t go-sintrop .
 # Build without cache
-docker build --no-cache -t sin_geth .
+docker build --no-cache -t go-sintrop .
 ```
 
-### Run sin_geth
+### Executar go-sintrop
 ```
-docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sequoia_node  sin_geth
-## Change /home/user/sequoia_volume to your dir
+docker run -p=30303:30303 -p=8545:8545 -it -v /home/user/sintrop_node:/go-sintrop/sintrop_node  go-sintrop
+
+## Trocar /home/user/sintrop_node para o seu diretório
 ```
 ## GETH
 
-### Start a node
+### Iniciar o node
 
-Change miner.etherbase to your wallet address and run the following command:
+Trocar miner.etherbase para o seu endereço de carteira e executar o comando abaixo:
 
 ```
 geth --identity Sintrop --datadir ./sintrop_node \
@@ -40,7 +41,7 @@ geth --identity Sintrop --datadir ./sintrop_node \
   console
 ```
 
-### Start a archive node
+### Rodar um archive node
 ```
 geth --identity Sintrop --datadir ./sintrop_node \
   --sintrop \
@@ -50,22 +51,20 @@ geth --identity Sintrop --datadir ./sintrop_node \
   --port 30303 \
   --authrpc.addr localhost --authrpc.port 8551 \
   --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --http.api debug,net,eth,web3,txpool --ws=true --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
-  --miner.threads=1 \
-  --miner.etherbase=0x0000000000000000000000000000000000000000 \
   --gcmode=archive \
   console
 ```
 
-### Operate network
+### Operar a rede
 
 ```
 balance = web3.fromWei(eth.getBalance("0x0000000000000000000000000000000000000000), "ether");
 eth.blockNumber
 web3.eth.getBlock(eth.blockNumber)
 ```
-## MINER
+## MINERAÇÂO
 
-### Start and stop mining
+### Iniciar e interromper a mineração
 ```
   miner.start()
   miner.stop()
