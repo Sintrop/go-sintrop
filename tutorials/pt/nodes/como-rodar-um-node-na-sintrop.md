@@ -13,7 +13,7 @@ Extraia o arquivo e acesse a pasta do projeto em um terminal.
 Altere miner.etherbase para o endereço da sua carteira e execute o seguinte comando:
 
 ```
-./geth --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 30303 --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --miner.threads=1 --miner.etherbase=0x0000000000000000000000000000000000000000 console
+./geth --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 25225 --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --miner.threads=1 --miner.etherbase=0x0000000000000000000000000000000000000000 console
 ```
 ### Pausar o node
 
