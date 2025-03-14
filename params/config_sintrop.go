@@ -68,9 +68,9 @@ var (
 
 		ECIP1099FBlock: nil, // Etchash
 
-		DisposalBlock:      big.NewInt(0), // Dispose difficulty bomb
-		ECIP1017FBlock:     nil,           // Ethereum Classic's disinflationary monetary policy
-		ECIP1017EraRounds:  nil,
+		DisposalBlock:      big.NewInt(0),       // Dispose difficulty bomb
+		ECIP1017FBlock:     big.NewInt(5000000), // Ethereum Classic's disinflationary monetary policy
+		ECIP1017EraRounds:  big.NewInt(5000000),
 		ECIP1010PauseBlock: nil, // No need to delay difficulty bomb, is defused by default
 		ECIP1010Length:     nil,
 		ECBP1100FBlock:     nil, // ECBP1100 (MESS artificial finality)
