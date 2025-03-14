@@ -183,7 +183,7 @@ func TestGethStartupLogs(t *testing.T) {
 			t.Log("flags:", caseFlags)
 			geth := runGeth(t, caseFlags...)
 			geth.KillTimeout = 10 * time.Second
-			geth.ExpectRegexp("(?ism).*CoreGeth.*")
+			geth.ExpectRegexp("(?ism).*GoSintrop.*")
 			geth.ExpectExit()
 			if status := geth.ExitStatus(); status != 0 {
 				t.Errorf("expected exit status == 0, got: %d", status)
