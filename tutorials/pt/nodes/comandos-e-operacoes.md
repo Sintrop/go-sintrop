@@ -43,4 +43,3 @@ eth.blockNumber
 ```
 eth.sendTransaction({from:eth.coinbase, to:'0xaddress', value:web3.toWei(1,"ether"), gas:21000});
 ```
-
