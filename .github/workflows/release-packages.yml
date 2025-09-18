@@ -3,7 +3,7 @@ name: Build packages for a release
 on:
   push:
     tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
   workflow_dispatch:
 
 defaults:
@@ -17,17 +17,17 @@ jobs:
     strategy:
       matrix:
         include:
-        - os: macos-latest
-          BUILD_OS_NAME: osx
+          - os: macos-latest
+            BUILD_OS_NAME: osx
 
-        - os: ubuntu-20.04
-          BUILD_OS_NAME: linux
+          - os: ubuntu-22.04
+            BUILD_OS_NAME: linux
 
-        - os: ubuntu-20.04
-          BUILD_OS_NAME: arm
+          - os: ubuntu-22.04
+            BUILD_OS_NAME: arm
 
-        - os: windows-latest
-          BUILD_OS_NAME: win64
+          - os: windows-latest
+            BUILD_OS_NAME: win64
 
     steps:
       - name: Checkout etclabscore/core-geth
@@ -38,7 +38,7 @@ jobs:
         id: go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
+          go-version: "1.21"
 
       - name: Cache lookup (Linux/ARM)
         uses: actions/cache@v3
