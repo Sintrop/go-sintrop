@@ -15,9 +15,10 @@ jobs:
     name: Build artifacts
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         include:
-          - os: macos-latest
+          - os: macos-26
             BUILD_OS_NAME: osx
 
           - os: ubuntu-22.04
@@ -26,7 +27,7 @@ jobs:
           - os: ubuntu-22.04
             BUILD_OS_NAME: arm
 
-          - os: windows-latest
+          - os: windows-2022
             BUILD_OS_NAME: win64
 
     steps:
